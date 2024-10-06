@@ -69,7 +69,7 @@ python val_cifar.py --img-size 384 --dataset cifar100 --data ../data --b 128 --r
 ```
 #### If you want to test on one GPU, set '--num-gpu' to 1.
 
-##Model Zoo
+## Model Zoo
 ### Classification
 
 | Mode        |                           Download link                     | 
