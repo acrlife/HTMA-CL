@@ -1,7 +1,7 @@
 # 📖 HTHA-CL: An Efficient And Robust Compressed Learning Framework Using 
 Hierarchical Tokenization With Hybrid Attention
 
-![network](./figs/networks.png)
+![network](figs/networks.png)
 
 ## 🔧 Dependencies and Installation
 
