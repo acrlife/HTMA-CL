@@ -2,6 +2,8 @@
 Hierarchical Tokenization With Hybrid Attention
 
 ![network](figs/networks.png)
+![PT](figs/PT.png)
+![USA](figs/USA.png)
 
 ## 🔧 Dependencies and Installation
 
