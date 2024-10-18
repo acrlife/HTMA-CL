@@ -1,4 +1,4 @@
-# 📖 HTHA-CL: An Efficient And Robust Compressed Learning Framework Using Hierarchical Tokenization With Hybrid Attention
+# 📖 HTMA-CL: An Efficient And Robust Compressed Learning Framework Using Hierarchical Tokenization With Hybrid Attention
 
 ![network](figs/networks.png)
 ![PT](figs/PT.png)
@@ -18,8 +18,8 @@
 1. Clone repo
 
     ```bash
-    git clone https://github.com/acrlife/HTHA-CL.git
-    cd HTHA-CL-main
+    git clone https://github.com/acrlife/HTMA-CL.git
+    cd HTMA-CL-main
     ```
 
 2. Install dependent packages
@@ -36,16 +36,16 @@
 
 #### Training on ImageNet with two GPUs(Change the --data and --transfer-model to your own, and modify the following commands in the same way.)
 ```bash
-torchrun --nnodes=1 --nproc_per_node=2 train_on_imagenet.py --data '../imagenet' --model htha_14 --epochs 60 -b 80 -j 8 --transfer-learning True --transfer-model '../checkpoint/pretrained_weight.pth' --lr 1e-3 --warmup-epochs 5 --warmup-lr 1e-5 --min-lr 2e-4 --weight-decay 5e-4 --amp --img-size 384
+torchrun --nnodes=1 --nproc_per_node=2 train_on_imagenet.py --data '../imagenet' --model htma_14 --epochs 60 -b 80 -j 8 --transfer-learning True --transfer-model '../checkpoint/pretrained_weight.pth' --lr 1e-3 --warmup-epochs 5 --warmup-lr 1e-5 --min-lr 2e-4 --weight-decay 5e-4 --amp --img-size 384
 ```
 
 #### Training on Cifar100 with two GPUs
 ```bash
-python train_on_cifar.py --model htha_14 --dataset cifar100 --data ../data --lr 0.001 --b 128 --img-size 384 --rat 0.1 --transfer-model ../checkpoint/pretrained_weight.pth --num-gpu 2
+python train_on_cifar.py --model htma_14 --dataset cifar100 --data ../data --lr 0.001 --b 128 --img-size 384 --rat 0.1 --transfer-model ../checkpoint/pretrained_weight.pth --num-gpu 2
 ```
 #### Training on Cifar10 with two GPUs
 ```bash
-python train_on_cifar.py --model htha_14 --dataset cifar10 --data ../data --lr 0.001 --b 128 --img-size 384 --rat 0.1 --transfer-model ../checkpoint/pretrained_weight.pth --num-gpu 2
+python train_on_cifar.py --model htma_14 --dataset cifar10 --data ../data --lr 0.001 --b 128 --img-size 384 --rat 0.1 --transfer-model ../checkpoint/pretrained_weight.pth --num-gpu 2
 ```
 #### If you want to train on one GPU, set '--num-gpu' to 1.
 
@@ -54,18 +54,18 @@ You can download the pre-trained checkpoints from our model zoo.
 ### Testing on ImageNet with two GPUs
 ```bash
 
-python val_imagenet.py --model htha_14 --data ../imagenet --img-size 384 -b 128 --rat 0.1 --eval_checkpoint ../checkpoint/imagenet1k@384_r10.pth --num-gpu 2
+python val_imagenet.py --model htma_14 --data ../imagenet --img-size 384 -b 128 --rat 0.1 --eval_checkpoint ../checkpoint/imagenet1k@384_r10.pth --num-gpu 2
 ```
 
 ### Testing on Cifar10 with two GPUs
 ```bash
 
-python val_cifar.py --model htha_14 --img-size 384 --dataset cifar10 --data ../data --b 128 --rat 0.10 --eval_checkpoint ../checkpoint/cifar10/cifar10_384_r0.1_97.75.pth --num-gpu 2
+python val_cifar.py --model htma_14 --img-size 384 --dataset cifar10 --data ../data --b 128 --rat 0.10 --eval_checkpoint ../checkpoint/cifar10/cifar10_384_r0.1_97.75.pth --num-gpu 2
 ```
 ### Testing on Cifar100 with two GPUs
 ```bash
 
-python val_cifar.py --img-size 384 --dataset cifar100 --data ../data --b 128 --rat 0.10 --eval_checkpoint ../checkpoint/cifar100/cifar100_384_r0.1_86.68.pth --num-gpu 2
+python val_cifar.py --model htma_14 --img-size 384 --dataset cifar100 --data ../data --b 128 --rat 0.10 --eval_checkpoint ../checkpoint/cifar100/cifar100_384_r0.1_86.68.pth --num-gpu 2
 ```
 #### If you want to test on one GPU, set '--num-gpu' to 1.
 
