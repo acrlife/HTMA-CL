@@ -1,4 +1,4 @@
-"""Val HTHA-CL on CIFAR10/CIFAR100."""
+"""Val HTMA-CL on CIFAR10/CIFAR100."""
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -31,7 +31,7 @@ parser.add_argument('--pretrained', action='store_true', default=False,
                     help='Start with pretrained version of specified network (if avail)')
 parser.add_argument('--num-classes', type=int, default=100, metavar='N',
                     help='number of label classes (default: 1000)')
-parser.add_argument('--model', default='htha_14', type=str, metavar='MODEL',
+parser.add_argument('--model', default='htma_14', type=str, metavar='MODEL',
                     help='Name of model to train (default: "countception"')
 parser.add_argument('--img-size', type=int, default=384, metavar='N',
                     help='Image patch size (default: None => model default)')
@@ -39,7 +39,7 @@ parser.add_argument('--initial-checkpoint', default='', type=str, metavar='PATH'
                     help='Initialize model from this checkpoint (default: none)')
 parser.add_argument('--rat', type=float, default=0.1,help='CS sampling ratio.')
 parser.add_argument('--blocksize', type=int, default=32,help='Patch size')
-parser.add_argument('--eval_checkpoint', default=r"D:\checkpoint\HTHA\cifar100\cifar100_384_r0.1_0.001_0.0001_86.68.pth",
+parser.add_argument('--eval_checkpoint', default="",
                     type=str, metavar='PATH',
                     help='path to eval checkpoint (default: none)')
 parser.add_argument('--model-ema', action='store_true', default=False,

@@ -14,8 +14,9 @@ from timm.models import register_model
 from transformer_block import Block, get_sinusoid_encoding
 from transformer import TransformerEncoder
 from Sampling import CS_Sampling
-from thop import profile
-from torchsummary import summary
+# from thop import profile
+# from torchsummary import summary
+from calflops import calculate_flops
 
 
 class ConvLayer(nn.Module):
@@ -253,15 +254,15 @@ class PyramidToken(nn.Module):
         return x
 
 
-class HTHA(nn.Module):
+class HTMA(nn.Module):
     def __init__(self, img_size=224, tokens_type='convolution',cs_ratio=0.1,blocksize=32, in_chans=3, num_classes=1000, embed_dim=384, depth=14,
                  num_heads=12, mlp_ratio=4., qkv_bias=False, qk_scale=None, drop_rate=0., attn_drop_rate=0.,
                  drop_path_rate=0., norm_layer=nn.LayerNorm, token_dim=64):
         super().__init__()
         self.num_classes = num_classes
         self.num_features = self.embed_dim = embed_dim  # num_features for consistency with other models
-
-        self.sample = CS_Sampling(n_channels=in_chans, cs_ratio=cs_ratio, blocksize=blocksize, im_size=img_size)
+        if cs_ratio > 0:
+            self.sample = CS_Sampling(n_channels=in_chans, cs_ratio=cs_ratio, blocksize=blocksize, im_size=img_size)
         self.tokens_to_token = PyramidToken(
                 img_size=img_size, tokens_type=tokens_type, in_chans=in_chans, embed_dim=embed_dim, token_dim=token_dim)
         num_patches = self.tokens_to_token.num_patches
@@ -306,7 +307,8 @@ class HTHA(nn.Module):
 
     def forward_features(self, x):
         B = x.shape[0]
-        x = self.sample(x)
+        if hasattr(self,'sample'):
+            x = self.sample(x)
         x = self.tokens_to_token(x)
 
         cls_tokens = self.cls_token.expand(B, -1, -1)
@@ -326,12 +328,12 @@ class HTHA(nn.Module):
         return x
 
 @register_model
-def htha_14(img_size=224,tokens_type='convolution', cs_ratio=0.01,blocksize=32,pretrained_cfg=None,
+def htma_14(img_size=224,tokens_type='convolution', cs_ratio=0.01,blocksize=32,pretrained_cfg=None,
                  pretrained_cfg_overlay=None,num_classes=1000,
                  embed_dim=384,depth=14,pretrained=False, **kwargs):
     if pretrained:
         kwargs.setdefault('qk_scale', 384 ** -0.5)
-    model = HTHA(img_size=img_size,tokens_type=tokens_type, cs_ratio=cs_ratio,blocksize=blocksize,
+    model = HTMA(img_size=img_size,tokens_type=tokens_type, cs_ratio=cs_ratio,blocksize=blocksize,
                      embed_dim=embed_dim, depth=depth, num_heads=6, mlp_ratio=3., num_classes=num_classes,**kwargs)
     if pretrained:
         load_pretrained(
@@ -339,12 +341,12 @@ def htha_14(img_size=224,tokens_type='convolution', cs_ratio=0.01,blocksize=32,p
     return model
 
 @register_model
-def htha_24(img_size=224,tokens_type='convolution', cs_ratio=0.01,blocksize=32,pretrained_cfg=None,
+def htma_24(img_size=224,tokens_type='convolution', cs_ratio=0.01,blocksize=32,pretrained_cfg=None,
                  pretrained_cfg_overlay=None,num_classes=1000,
                  embed_dim=512,depth=24,pretrained=False, **kwargs):
     if pretrained:
         kwargs.setdefault('qk_scale', 512 ** -0.5)
-    model = HTHA(img_size=img_size,tokens_type=tokens_type, cs_ratio=cs_ratio,blocksize=blocksize,
+    model = HTMA(img_size=img_size,tokens_type=tokens_type, cs_ratio=cs_ratio,blocksize=blocksize,
                      embed_dim=embed_dim, depth=depth, num_heads=8, mlp_ratio=3., num_classes=num_classes,**kwargs)
     if pretrained:
         load_pretrained(
@@ -354,9 +356,11 @@ def htha_24(img_size=224,tokens_type='convolution', cs_ratio=0.01,blocksize=32,p
 
 if __name__ == '__main__':
     inputs = torch.rand(1,3,384,384).cuda()
-    model = htha_14(img_size=384,tokens_type='convolution', cs_ratio=0.1,blocksize=32).cuda()
+    # model = htma_14(img_size=384,tokens_type='convolution', cs_ratio=0,blocksize=32).cuda()
+    model = htma_24(img_size=384, tokens_type='convolution', cs_ratio=0, blocksize=32).cuda()
     res = model(inputs)
-    summary(model,input_size=(3,384,384),batch_size=1)
-    macs,params = profile(model,inputs=(inputs,))
-    print(f"Macs:{round(macs/(10**9),3)} G.")
-    print(f"Params:{round(params/(10**6),3)} M.")
+    # summary(model,input_size=(3,384,384),batch_size=1)
+    # macs,params = profile(model,inputs=(inputs,))
+    # print(f"Macs:{round(macs/(10**9),3)} G.")
+    # print(f"Params:{round(params/(10**6),3)} M.")
+    flops, macs, params = calculate_flops(model, input_shape=(1,3,384,384))

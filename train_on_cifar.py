@@ -1,4 +1,4 @@
-"""Train HTHA-CL on CIFAR10/CIFAR100."""
+"""Train HTMA-CL on CIFAR10/CIFAR100."""
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -36,7 +36,7 @@ parser.add_argument('--pretrained', action='store_true', default=False,
                     help='Start with pretrained version of specified network (if avail)')
 parser.add_argument('--num-classes', type=int, default=100, metavar='N',
                     help='number of label classes (default: 1000)')
-parser.add_argument('--model', default='htha_14', type=str, metavar='MODEL',
+parser.add_argument('--model', default='htma_14', type=str, metavar='MODEL',
                     help='Name of model to train (default: "countception"')
 parser.add_argument('--img-size', type=int, default=384, metavar='N',
                     help='Image patch size (default: None => model default)')

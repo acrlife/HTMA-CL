@@ -1,4 +1,4 @@
-"""Val HTHA-CL on ImageNet-1K.与test_imagenet-Copy1一致，使用该版本上传到github"""
+"""Val HTMA-CL on ImageNet-1K"""
 import argparse
 import time
 import yaml
@@ -34,18 +34,18 @@ config_parser = parser = argparse.ArgumentParser(description='Training Config', 
 parser.add_argument('-c', '--config', default='', type=str, metavar='FILE',
                     help='YAML config file specifying default arguments')
 
-parser = argparse.ArgumentParser(description='Train HTHA-CL on ImageNet-1K.')
+parser = argparse.ArgumentParser(description='Train HTMA-CL on ImageNet-1K.')
 
 # Dataset / Model parameters
 parser.add_argument('--data', metavar='DIR', default='../imagenet',
                     help='path to dataset')
-parser.add_argument('--model', default='htha_14', type=str, metavar='MODEL',
+parser.add_argument('--model', default='htma_14', type=str, metavar='MODEL',
                     help='Name of model to train (default: "countception"')
 parser.add_argument('--pretrained', action='store_true', default=False,
                     help='Start with pretrained version of specified network (if avail)')
 parser.add_argument('--initial-checkpoint', default='', type=str, metavar='PATH',
                     help='Initialize model from this checkpoint (default: none)')
-parser.add_argument('--eval_checkpoint', default="D:/checkpoint/HTHA/imagenet/imagenet1k@384_r1.pth", type=str, metavar='PATH',
+parser.add_argument('--eval_checkpoint', default="", type=str, metavar='PATH',
                     help='path to eval checkpoint (default: none)')
 parser.add_argument('--num-classes', type=int, default=1000, metavar='N',
                     help='number of label classes (default: 1000)')

@@ -1,8 +1,6 @@
-# 📖 HTMA-CL: An Efficient And Robust Compressed Learning Framework Using Hierarchical Tokenization With Hybrid Attention
+# 📖 HTMA-CL: An Efficient And Robust Compressed Learning Framework Using Hierarchical Tokenization With Multi-Scale Attention
 
-![network](figs/networks.png)
-![PT](figs/PT.png)
-![USA](figs/USA.png)
+![network](./figs/overall_structure.png)
 
 ## 🔧 Dependencies and Installation
 
@@ -32,7 +30,7 @@
 
 ## Training for Classification
 1. Prepare the training data of [ImageNet1K](https://image-net.org/download-images.php)
-2. Download the pre-trained checkpoints of our backbone on [ImageNet1K](https://pan.baidu.com/s/1C6W5rbP_Ad0qKD3KYOWOOQ?pwd=HTHA), 提取码: HTHA. 
+2. Download the pre-trained checkpoints of our backbone on [ImageNet1K](https://pan.baidu.com/s/1E-P8cw6dyzMuL5Q2FcnA4g?pwd=a111), 提取码: a111. 
 
 #### Training on ImageNet with two GPUs(Change the --data and --transfer-model to your own, and modify the following commands in the same way.)
 ```bash
@@ -69,12 +67,15 @@ python val_cifar.py --model htma_14 --img-size 384 --dataset cifar100 --data ../
 ```
 #### If you want to test on one GPU, set '--num-gpu' to 1.
 
-## Model Zoo
+##Model Zoo
 ### Classification
 
 | Mode        |                           Download link                     | 
 | :------------------- | :--------------------------------------------: |
-| Pre-trained Backbone        |                           [URL](https://pan.baidu.com/s/1C6W5rbP_Ad0qKD3KYOWOOQ?pwd=HTHA), 提取码: HTHA                     |  
-| ImageNet classification (ratio={0.1, 0.05, 0.025, 0.01})       |                           [URL](https://pan.baidu.com/s/1gXnjhxRa1k0rrExO7XfMsw?pwd=HTHA),  提取码: HTHA                     |
-| Cifar10 classification (ratio={0.25, 0.1, 0.018})     |                           [URL](https://pan.baidu.com/s/1mIbuqTcl4cy5itaMPbLB8A?pwd=HTHA), 提取码: HTHA                    |  
-| Cifar100 classification (ratio={0.25, 0.1, 0.018})     |                           [URL](https://pan.baidu.com/s/1fSmiXN-j1qmxMXeBJaAnZA?pwd=HTHA), 提取码: HTHA                     |  
+| Pre-trained Backbone        |                           [URL](https://pan.baidu.com/s/1E-P8cw6dyzMuL5Q2FcnA4g?pwd=a111), 提取码: a111                     |  
+| ImageNet classification (ratio={0.1, 0.05, 0.025, 0.01})       |                           [URL](https://pan.baidu.com/s/1dm83hE1uPRne-fkF0bo5yQ?pwd=a111),  提取码: a111                     |
+| Cifar10 classification (ratio={0.25, 0.1, 0.018})     |                           [URL](https://pan.baidu.com/s/1HVdKi2QhedkTQauxSUDDSw?pwd=a111), 提取码: a111                    |  
+| Cifar100 classification (ratio={0.25, 0.1, 0.018})     |                           [URL](https://pan.baidu.com/s/14-ZRMGAUFRS0IboicvMz5A?pwd=a111), 提取码: a111                    |  
+
+## Acknowledgements
+This project is based on TransCL([paper](https://ieeexplore.ieee.org/document/9841016), [code](https://github.com/MC-E/TransCL.git)), T2T-ViT([paper](https://arxiv.org/abs/2101.11986), [code](https://github.com/yitu-opensource/T2T-ViT.git)), timm([code](https://github.com/huggingface/pytorch-image-models.git)), ml-cvnets([code](https://github.com/apple/ml-cvnets.git)) and MMSegmentation([code](https://github.com/open-mmlab/mmsegmentation.git)). Thanks for their wonderful works.

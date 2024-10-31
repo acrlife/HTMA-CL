@@ -1,4 +1,4 @@
-"""Train HTHA-CL on ImageNet-1K."""
+"""Train HTMA-CL on ImageNet-1K."""
 import argparse
 import time
 import yaml
@@ -36,12 +36,12 @@ config_parser = parser = argparse.ArgumentParser(description='Training Config', 
 parser.add_argument('-c', '--config', default='', type=str, metavar='FILE',
                     help='YAML config file specifying default arguments')
 
-parser = argparse.ArgumentParser(description='Train HTHA-CL on ImageNet-1K.')
+parser = argparse.ArgumentParser(description='Train HTMA-CL on ImageNet-1K.')
 
 # Dataset / Model parameters
 parser.add_argument('--data', metavar='DIR',default='./data/ImageNet_1k',
                     help='path to dataset')
-parser.add_argument('--model', default='htha_14', type=str, metavar='MODEL',
+parser.add_argument('--model', default='htma_14', type=str, metavar='MODEL',
                     help='Name of model to train (default: "countception"')
 parser.add_argument('--pretrained', action='store_true', default=False,
                     help='Start with pretrained version of specified network (if avail)')
@@ -117,7 +117,7 @@ parser.add_argument('--decay-epochs', type=float, default=30, metavar='N',
                     help='epoch interval to decay LR')
 parser.add_argument('--warmup-epochs', type=int, default=0, metavar='N',
                     help='epochs to warmup LR, if scheduler supports')
-# # 对于余弦退火学习率调整来说,训练达到指定的epoch时，使用当前的学习率再冷却cooldown-epochs个epoch
+# # 对于余弦退火学习率调整来说,训练达到指定的epoch时，使用当前的学习率再冷却cooldown-epochs
 parser.add_argument('--cooldown-epochs', type=int, default=10, metavar='N',
                     help='epochs to cooldown LR at min_lr, after cyclic schedule ends')
 parser.add_argument('--patience-epochs', type=int, default=10, metavar='N',
@@ -318,8 +318,8 @@ def main():
         args.model,  # default:mobile_vit_xx_small,在parser解析器中，接受到的字符会被默认转换成str
         pretrained=args.pretrained,  # default:False
         num_classes=args.num_classes,
-        drop_rate=args.drop,
-        drop_path_rate=args.drop_path,
+        drop_rate=args.drop,  # 0.0
+        drop_path_rate=args.drop_path, # 0.1
         global_pool=args.gp,
         bn_momentum=args.bn_momentum,
         bn_eps=args.bn_eps,
