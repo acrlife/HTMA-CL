@@ -63,7 +63,7 @@ parser.add_argument('--num-gpu', type=int, default=1,
 args = parser.parse_args()
 best_acc = 0  # best test accuracy
 
-def mian():
+def main():
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     if device == 'cuda':
         cudnn.benchmark = True
@@ -218,5 +218,5 @@ def mian():
         scheduler.step()
 
 if __name__ == '__main__':
-    mian()
+    main()
 
