@@ -121,7 +121,7 @@ def main():
 
     if args.transfer_learning:
         print('transfer learning, load pretrained model')
-        load_for_transfer_learning(net, args.transfer_model, use_ema=True, strict=False, num_classes=args.num_classes)
+        load_for_transfer_learning(net, args.transfer_model, use_ema=False, strict=False, num_classes=args.num_classes)
 
     net = net.to(device)
     if device == 'cuda'and args.num_gpu >1:
