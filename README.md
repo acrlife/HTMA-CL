@@ -1,4 +1,6 @@
-# 📖 HTMA-CL: An Efficient And Robust Compressed Learning Framework Using Hierarchical Tokenization With Multi-Scale Attention
+# 📖 HTMA-CL: Efficient Hierarchical Tokenization with Multiscale Attention for Compressed Learning
+
+## This code is directly related to the manuscript I have submitted to the Journal "The Visual Computer".
 
 ![network](./figs/overall_structure.png)
 
@@ -79,3 +81,16 @@ python val_cifar.py --model htma_14 --img-size 384 --dataset cifar100 --data ../
 
 ## Acknowledgements
 This project is based on TransCL([paper](https://ieeexplore.ieee.org/document/9841016), [code](https://github.com/MC-E/TransCL.git)), T2T-ViT([paper](https://arxiv.org/abs/2101.11986), [code](https://github.com/yitu-opensource/T2T-ViT.git)), timm([code](https://github.com/huggingface/pytorch-image-models.git)), ml-cvnets([code](https://github.com/apple/ml-cvnets.git)) and MMSegmentation([code](https://github.com/open-mmlab/mmsegmentation.git)). Thanks for their wonderful works.
+
+## 🎓 Citation
+
+If you find the code helpful in your research or work, please cite the following paper:
+
+```latex
+@article{jing2025htma-cl,
+  title={HTMA-CL: Efficient Hierarchical Tokenization with Multiscale Attention for Compressed Learning},
+  author={Jing, Yanhao and Wu, Xiangjun and You, Datao and Wang, Hui and Hu, Zhe and Kan, Haibin and Kurths, Jürgen},
+  unpublish,
+  year={2025},
+}
+```
