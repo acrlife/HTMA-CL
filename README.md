@@ -2,7 +2,7 @@
 
 ## This code is directly related to the manuscript I have submitted to the Journal "The Visual Computer".
 
-![network](./figs/overall_structure.png)
+![network](./figs/fig11.tif)
 
 ## 🔧 Dependencies and Installation
 
