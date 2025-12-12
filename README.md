@@ -1,7 +1,5 @@
 # 📖 HTMA-CL: Efficient Hierarchical Tokenization with Multiscale Attention for Compressed Learning
 
-## This code is directly related to the manuscript I have submitted to the Journal "Advanced Intelligent Systems".
-
 ![network](./figs/fig1.png)
 
 ## 🔧 Dependencies and Installation
