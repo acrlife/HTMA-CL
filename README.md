@@ -85,10 +85,15 @@ This project is based on TransCL([paper](https://ieeexplore.ieee.org/document/98
 If you find the code helpful in your research or work, please cite the following paper:
 
 ```latex
-@article{jing2025htma-cl,
-  title={HTMA-CL: Efficient Hierarchical Tokenization with Multiscale Attention for Compressed Learning},
-  author={Jing, Yanhao and Wu, Xiangjun and You, Datao and Wang, Hui and Hu, Zhe and Kan, Haibin and Kurths, Jürgen},
-  unpublish,
-  year={2025},
+@article{jing2026htma-cl,
+author = {Jing, Yanhao and Wu, Xiangjun and You, Datao and Wang, Hui and Hu, Zhe and Kan, Haibin and Kurths, J\"{u}rgen},
+title = {HTMA-CL: A Hierarchical Tokenization and Multiscale Attention Framework for Compressive Domain Multimedia Inference},
+year = {2026},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+issn = {1551-6857},
+url = {https://doi.org/10.1145/3820057},
+doi = {10.1145/3820057},
+journal = {ACM Trans. Multimedia Comput. Commun. Appl.},
 }
 ```
